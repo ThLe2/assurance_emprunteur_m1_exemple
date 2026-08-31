@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — 17 000 € ou 72 500 € ?</title>
+<style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">IOBSP Niveau 2 · Journée 10 <span>/</span> Les assurances emprunteurs — Module 1</div><h1>Exemple commenté — 17 000 € ou 72 500 € ?</h1><p class="sous">Un arbitrage de quotité, mené avec un couple</p>
+</div></header>
+<div class="wrap">
+
+<div class="carte">
+<div class="enc"><span class="t">LA SITUATION</span>M. et Mme Delcourt, 36 et 34 ans, empruntent 250 000 € sur 20 ans au taux nominal de 3,25 % pour leur résidence principale. Ils ont deux enfants de 4 et 7 ans. Leurs revenus : M. Delcourt gagne 2 900 € nets par mois, Mme Delcourt 1 600 €. Leur banque leur propose une assurance à 0,34 % du capital initial par an, et leur demande de choisir une quotité. Le conseiller a coché 50 / 50 par défaut, « c&#x27;est ce qu&#x27;on fait d&#x27;habitude ». Clients et montants fictifs. Le taux d&#x27;assurance est un taux de démonstration.</div>
+</div>
+<h2>Ce que le conseiller n&#x27;a pas fait</h2>
+<h2>Il a coché une case, il n&#x27;a pas posé une question</h2>
+<div class="carte">
+<p>La quotité 50 / 50 n&#x27;est pas une erreur en soi. C&#x27;est la formule la moins chère, et elle convient à de nombreuses situations. Mais elle a été retenue par défaut, sans que le couple sache ce qu&#x27;elle recouvre. Or c&#x27;est une décision qui engage leur situation en cas de coup dur — et ils n&#x27;ont pas les éléments pour la prendre.</p>
+<div class="enc al"><span class="t">LE PIÈGE DE LA QUOTITÉ 50 / 50</span>Le total fait bien 100 %, et beaucoup de clients en concluent que le prêt est couvert en entier. Il ne l&#x27;est pas. Au décès de l&#x27;un, l&#x27;assurance ne rembourse que la moitié du capital restant dû.</div>
+</div>
+<h2>Le chiffrage que vous devez leur présenter</h2>
+<h2>Premier tableau — ce que coûte chaque formule</h2>
+<div class="carte">
+<table><thead><tr>
+<th></th>
+<th>Quotité 50 / 50</th>
+<th>Quotité 100 / 100</th>
+</tr></thead><tbody>
+<tr><td>Prime annuelle</td><td>850 €</td><td>1 700 €</td></tr>
+<tr><td>Coût total sur 20 ans</td><td>17 000 €</td><td>34 000 €</td></tr>
+<tr><td><b>ÉCART DE PRIME</b></td><td>17</td><td>000 € sur toute la durée</td></tr>
+</tbody></table>
+<p>Présenté seul, ce tableau conduit mécaniquement au choix le moins cher. C&#x27;est pourquoi il ne doit jamais être présenté seul.</p>
+</div>
+<h2>Second tableau — ce que cet écart achète</h2>
+<div class="carte">
+<p>Plaçons-nous dix ans après la souscription. À ce moment, le capital restant dû s&#x27;élève à 145 109 €.</p>
+<table><thead><tr>
+<th>Si M. Delcourt venait à décéder</th>
+<th>Quotité 50 / 50</th>
+<th>Quotité 100 / 100</th>
+</tr></thead><tbody>
+<tr><td>Capital restant dû</td><td>145 109 €</td><td>145 109 €</td></tr>
+<tr><td>Versé par l&#x27;assurance</td><td>72 554 €</td><td>145 109 €</td></tr>
+<tr><td><b>RESTE À LA CHARGE DE</b> Mme <b>DELCOURT</b></td><td>72 554 €</td><td>0 €</td></tr>
+<tr><td>Soit une mensualité de</td><td>≈ 709 € pendant 10 ans</td><td>—</td></tr>
+</tbody></table>
+<div class="enc"><span class="t">ET C&#x27;EST ICI QUE LA SITUATION DU COUPLE ENTRE EN JEU</span>Mme Delcourt gagne 1 600 € par mois. En quotité 50 / 50, elle devrait assumer une mensualité de 709 € — soit 44 % de son revenu — tout en élevant seule deux enfants. Ce n&#x27;est pas tenable, et c&#x27;est cela qu&#x27;il faut dire.</div>
+</div>
+<h2>L&#x27;arbitrage, posé en une phrase</h2>
+<div class="carte">
+<p>Vous — « La formule à 50/50 vous coûtera 17 000 € sur la durée du prêt. Celle à 100/100 vous en coûtera 34 000 €, soit 17 000 € de plus. Ce que ces 17 000 € achètent, c&#x27;est ceci : si l&#x27;un de vous disparaît, l&#x27;autre n&#x27;aura plus rien à payer, au lieu de devoir rembourser 72 500 €. » Vous ne décidez pas à leur place. Vous mettez les deux chiffres l&#x27;un en face de l&#x27;autre, et vous les laissez arbitrer.</p>
+</div>
+<h2>Les trois questions qui affinent le choix</h2>
+<h2>① Les deux revenus sont-ils comparables ?</h2>
+<div class="carte">
+<p>Ici, non : M. Delcourt apporte 64 % des revenus du foyer. Le risque n&#x27;est donc pas symétrique. Une quotité déséquilibrée — par exemple 70 sur sa tête et 50 sur celle de Mme Delcourt — est une option intermédiaire qui mérite d&#x27;être chiffrée.</p>
+<div class="enc ci"><span class="t">UN POINT QUE LES CLIENTS IGNORENT</span>La quotité n&#x27;est pas limitée à 50/50 ou 100/100. Elle se répartit librement entre les deux têtes, dans la limite de 200 % au total et sous réserve des exigences du prêteur. Beaucoup de couples découvrent tardivement qu&#x27;un dosage intermédiaire était possible.</div>
+</div>
+<h2>② Le survivant pourrait-il assumer la mensualité restante ?</h2>
+<div class="carte">
+<p>C&#x27;est la question décisive, et elle se répond par un calcul, pas par une impression. Nous l&#x27;avons fait : 709 € sur un revenu de 1 600 €, avec deux enfants à charge. La réponse est non.</p>
+</div>
+<h2>③ Y a-t-il des enfants, et à quelle échéance ?</h2>
+<div class="carte">
+<p>Deux enfants de 4 et 7 ans : ils seront à charge pendant l&#x27;essentiel de la durée du prêt. L&#x27;exposition du foyer est maximale sur toute la période, ce qui plaide pour une couverture élevée.</p>
+<div class="enc ci"><span class="t">SUR LA MANIÈRE DE POSER CES QUESTIONS</span>Elles touchent à l&#x27;intime : la disparition d&#x27;un conjoint, l&#x27;avenir des enfants. Elles se posent avec retenue, en expliquant pourquoi on les pose. Mais ne pas les poser du tout, c&#x27;est laisser le client choisir sur le seul critère du prix — et c&#x27;est le plus mauvais des critères pour cette décision.</div>
+</div>
+<h2>Ce que ce dossier démontre</h2>
+<div class="carte">
+<table><thead><tr>
+<th>Ce que le conseiller a fait</th>
+<th>Ce qu&#x27;il aurait fallu faire</th>
+</tr></thead><tbody>
+<tr><td>Cocher 50 / 50 par défaut</td><td>Expliquer ce que recouvre chaque quotité</td></tr>
+<tr><td>Présenter un prix</td><td>Présenter un prix ET ce qu&#x27;il achète, dans le même tableau</td></tr>
+<tr><td>Ne rien demander sur la situation du foyer</td><td>Poser les trois questions : revenus, capacité du survivant, enfants</td></tr>
+<tr><td>Proposer deux options</td><td>Signaler qu&#x27;une répartition intermédiaire est possible</td></tr>
+</tbody></table>
+<div class="enc"><span class="t">LE FIL DU MODULE</span>L&#x27;assurance emprunteur n&#x27;est pas une case à cocher. C&#x27;est la décision qui déterminera si un accident de la vie se traduit ou non par la perte du logement familial.</div>
+<p>Et rappelez-vous ce qu&#x27;elle représente dans le coût : 34 000 € d&#x27;assurance sur un prêt de 250 000 €. Sur certains profils et à taux modéré, elle coûte davantage que les intérêts. C&#x27;est un poste de coût majeur — et, comme nous le verrons aux modules 4 et 5, un poste sur lequel le client garde le choix.</p>
+<p>Sources vérifiées au 20 août 2026 : caractère non légalement obligatoire de l&#x27;assurance emprunteur et notion de quotité, d&#x27;après des sources professionnelles concordantes ; rappels de la journée 6 (le TAEG et son critère) et de la journée 8 (convention <b>AERAS</b>, taux d&#x27;usure) ; arrêté du 18 juillet 2022, annexe A, section A.4. Les calculs ont été effectués et vérifiés en interne : prime de 0,34 % du capital initial, capital restant dû par la formule d&#x27;amortissement à 3,25 % sur 240 mois, soit 145 109 € après 120 mensualités. Le taux d&#x27;assurance de 0,34 % est un taux de démonstration et ne reflète pas un tarif de marché : les tarifs varient fortement selon l&#x27;âge, l&#x27;état de santé, la profession et le type de contrat — voir le module 6. Les exigences des prêteurs en matière de quotité minimale relèvent de leur politique commerciale. Clients et montants fictifs.</p>
+</div>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div></body></html>
